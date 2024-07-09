@@ -1,0 +1,27 @@
+name: helpdesk_app
+description: A new Flutter project.
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.0
+  shared_preferences: ^2.0.15
+  http: ^0.13.4
+  file_picker: ^5.0.1
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/pelindo.png
+    - assets/image1.png
+    - assets/image2.png
+    - assets/image3.png
