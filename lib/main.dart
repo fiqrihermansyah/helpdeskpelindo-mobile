@@ -14,6 +14,8 @@ import 'PlannerManagement/PlannerSubmissionListScreen.dart';
 import 'User/MyTicketsScreen.dart';
 import 'User/MySubmissionsScreen.dart';
 import 'User/TicketDetailScreen.dart';
+import 'User/CreateSubmissionScreen.dart';
+import 'User/SubmissionDetailScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,6 +48,9 @@ class MyApp extends StatelessWidget {
             '/submissionsaya': (ctx) => MySubmissionsScreen(),
             CreateTicketScreen.routeName: (ctx) => CreateTicketScreen(),
             TicketDetailScreen.routeName: (ctx) => TicketDetailScreen(),
+            CreateSubmissionScreen.routeName: (context) =>
+                CreateSubmissionScreen(),
+            SubmissionDetailScreen.routeName: (ctx) => SubmissionDetailScreen(),
           },
         ),
       ),

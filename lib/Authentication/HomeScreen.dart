@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'AuthProvider.dart';
+import '/User/CreateSubmissionScreen.dart'; // Import CreateSubmissionScreen
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -76,7 +77,8 @@ class HomeScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // Navigasi ke halaman pengajuan submission
+                Navigator.of(context).pushNamed(CreateSubmissionScreen
+                    .routeName); // Navigasi ke halaman pengajuan submission
               },
               child: Text('Ajukan Submission'),
             ),

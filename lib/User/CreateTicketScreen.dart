@@ -131,6 +131,7 @@ class _CreateTicketScreenState extends State<CreateTicketScreen> {
         if (response.statusCode == 200) {
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Ticket submitted successfully')));
+          Navigator.of(context).pushReplacementNamed('/home');
         } else {
           print('Failed to submit ticket: ${response.reasonPhrase}');
           print('Response body: $responseBody');
