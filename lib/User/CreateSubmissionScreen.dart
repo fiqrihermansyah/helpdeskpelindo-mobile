@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '/Authentication/AuthProvider.dart';
+import '/Authentication/config.dart'; // Impor kelas Config
 
 class CreateSubmissionScreen extends StatefulWidget {
   static const routeName = '/create-submission';
@@ -62,7 +63,7 @@ class _CreateSubmissionScreenState extends State<CreateSubmissionScreen> {
     String namaKapal,
     String keagenan,
   ) async {
-    var uri = Uri.parse('http://127.0.0.1:8000/api/submissions');
+    var uri = Uri.parse('${Config.baseUrl}/api/submissions');
     var request = http.Request('POST', uri)
       ..headers['Authorization'] = 'Bearer $token'
       ..headers['Accept'] = 'application/json'

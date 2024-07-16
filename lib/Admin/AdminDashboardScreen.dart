@@ -1,42 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'AdminProvider.dart';
-import 'UserListScreen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import '/Authentication/AuthProvider.dart';
+import '/Admin/UserListScreen.dart';
+import '/Authentication/config.dart'; // Import Config class
 
-class AdminDashboardScreen extends StatelessWidget {
+class AdminDashboardScreen extends StatefulWidget {
   static const routeName = '/admin-dashboard';
 
   @override
-  Widget build(BuildContext context) {
-    final adminProvider = Provider.of<AdminProvider>(context);
+  _AdminDashboardScreenState createState() => _AdminDashboardScreenState();
+}
 
+class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Admin Dashboard'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Admin Dashboard',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Manage Tickets'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => UserListScreen(),
-                ));
-              },
-              child: Text('Manage Users'),
-            ),
-          ],
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed(UserListScreen.routeName);
+          },
+          child: Text('Daftar User'),
         ),
       ),
     );

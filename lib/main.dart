@@ -16,6 +16,7 @@ import 'User/MySubmissionsScreen.dart';
 import 'User/TicketDetailScreen.dart';
 import 'User/CreateSubmissionScreen.dart';
 import 'User/SubmissionDetailScreen.dart';
+import 'Admin/UserListScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
             CreateSubmissionScreen.routeName: (context) =>
                 CreateSubmissionScreen(),
             SubmissionDetailScreen.routeName: (ctx) => SubmissionDetailScreen(),
+            UserListScreen.routeName: (ctx) => UserListScreen(),
           },
         ),
       ),

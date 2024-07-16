@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '/Authentication/AuthProvider.dart';
+import '/Authentication/config.dart'; // Impor kelas Config
 import '/User/SubmissionDetailScreen.dart';
 
 class MySubmissionsScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _MySubmissionsScreenState extends State<MySubmissionsScreen> {
 
     try {
       final response = await http.get(
-        Uri.parse('http://127.0.0.1:8000/api/submissions'),
+        Uri.parse('${Config.baseUrl}/api/submissions'),
         headers: {
           'Authorization': 'Bearer $token',
           'Accept': 'application/json',

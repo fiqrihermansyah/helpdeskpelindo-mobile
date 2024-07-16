@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '/Authentication/AuthProvider.dart';
+import '/Authentication/config.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 
@@ -24,6 +25,9 @@ class TicketDetailScreen extends StatelessWidget {
         ),
       );
     }
+
+    // Construct the URL for the ticket
+    String ticketUrl = '${Config.baseUrl}/tickets/${ticket['ticket_id']}';
 
     return Scaffold(
       appBar: AppBar(
@@ -87,6 +91,14 @@ class TicketDetailScreen extends StatelessWidget {
                   title: Text('Divisi'),
                   subtitle: Text(
                       ticket['divisi']?['nama_divisi'] ?? 'Tidak ada divisi'),
+                ),
+              ),
+              SizedBox(height: 16),
+              Center(
+                child: SelectableText(
+                  ticketUrl,
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                  textAlign: TextAlign.center,
                 ),
               ),
               SizedBox(height: 16),
@@ -167,7 +179,7 @@ class __ReplyFormState extends State<_ReplyForm> {
 
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://127.0.0.1:8000/api/tickets/reply'),
+        Uri.parse('${Config.baseUrl}/api/tickets/reply'),
       );
 
       request.headers.addAll({

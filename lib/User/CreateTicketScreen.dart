@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import '/Authentication/AuthProvider.dart';
+import '/Authentication/config.dart';
 
 class CreateTicketScreen extends StatefulWidget {
   static const routeName = '/createTicket';
@@ -40,8 +41,8 @@ class _CreateTicketScreenState extends State<CreateTicketScreen> {
   }
 
   Future<void> _fetchDropdownData() async {
-    final priorityUrl = 'http://127.0.0.1:8000/api/priorities';
-    final divisionUrl = 'http://127.0.0.1:8000/api/divisions';
+    final priorityUrl = '${Config.baseUrl}/api/priorities';
+    final divisionUrl = '${Config.baseUrl}/api/divisions';
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     final token = authProvider.token;
 
@@ -95,17 +96,15 @@ class _CreateTicketScreenState extends State<CreateTicketScreen> {
     if (_formKey.currentState!.validate()) {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
       final nama = authProvider.nama ?? 'Unknown User';
-      final token =
-          authProvider.token; // Ensure you have the token from authProvider
+      final token = authProvider.token;
 
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://127.0.0.1:8000/api/tickets'),
+        Uri.parse('${Config.baseUrl}/api/tickets'),
       );
 
       request.headers.addAll({
-        'Authorization':
-            'Bearer $token', // Add the token to the request headers
+        'Authorization': 'Bearer $token',
         'Accept': 'application/json',
       });
 
@@ -115,11 +114,11 @@ class _CreateTicketScreenState extends State<CreateTicketScreen> {
       request.fields['priority_id'] = _selectedPriority!;
       request.fields['division_id'] = _selectedDivision!;
       request.fields['description'] = _descriptionController.text;
-      request.fields['status_id'] = '1'; // Set status to open
+      request.fields['status_id'] = '1';
 
       if (_selectedFile != null) {
         request.files.add(await http.MultipartFile.fromPath(
-          'attachment',
+          'formFile', // Ensure this matches the backend field name
           _selectedFile!.path,
         ));
       }

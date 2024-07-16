@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '/Authentication/AuthProvider.dart';
+import '/Authentication/config.dart'; // Impor kelas Config
 import 'TicketDetailScreen.dart';
 import 'CreateTicketScreen.dart';
 
@@ -12,7 +13,7 @@ class MyTicketsScreen extends StatelessWidget {
     final token = authProvider.token;
 
     final response = await http.get(
-      Uri.parse('http://127.0.0.1:8000/api/tickets'),
+      Uri.parse('${Config.baseUrl}/api/tickets'),
       headers: {
         'Authorization': 'Bearer $token',
         'Accept': 'application/json',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'config.dart';
 
 class AuthProvider with ChangeNotifier {
   bool _isAuthenticated = false;
@@ -27,7 +28,7 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> login(String nipp, String password) async {
-    final url = 'http://127.0.0.1:8000/api/auth/login';
+    final url = '${Config.baseUrl}/api/auth/login';
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -87,7 +88,7 @@ class AuthProvider with ChangeNotifier {
       throw Exception('Not authenticated');
     }
 
-    final url = 'http://127.0.0.1:8000/api/auth/logout';
+    final url = '${Config.baseUrl}/api/auth/logout';
     try {
       final response = await http.post(
         Uri.parse(url),
